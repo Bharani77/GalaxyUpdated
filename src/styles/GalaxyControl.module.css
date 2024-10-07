@@ -1,0 +1,227 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes move-stars {
+  from { background-position: 0 0; }
+  to { background-position: 10000px 5000px; }
+}
+
+@keyframes move-nebula {
+  from { background-position: 0 0; }
+  to { background-position: 10000px 0; }
+}
+
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px var(--primary-color), 0 0 35px var(--primary-color), 0 0 40px var(--primary-color), 0 0 50px var(--primary-color), 0 0 75px var(--primary-color); }
+  50% { text-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 7px #fff, 0 0 10px var(--primary-color), 0 0 17px var(--primary-color), 0 0 20px var(--primary-color), 0 0 25px var(--primary-color), 0 0 37px var(--primary-color); }
+}
+
+@keyframes kickLockAnimation {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.1) rotate(-5deg); }
+  50% { transform: scale(1.2) rotate(5deg); }
+  75% { transform: scale(1.1) rotate(-5deg); }
+}
+
+.stars, .nebula {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.stars {
+  background: var(--background-color) url('https://www.transparenttextures.com/patterns/star-field.png') repeat top center;
+  z-index: -3;
+  animation: move-stars 200s linear infinite;
+}
+
+.nebula {
+  background: transparent url('https://www.transparenttextures.com/patterns/translucent-fibres.png') repeat top center;
+  z-index: -2;
+  opacity: 0.4;
+  animation: move-nebula 300s linear infinite;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 2rem 0;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.kickLock {
+  color: #ff0000;
+  display: inline-block;
+  animation: kickLockAnimation 3s ease-in-out infinite;
+}
+
+.formContainer {
+  background-color: var(--form-background);
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputRow {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 1rem;
+}
+
+.inputGroup {
+  flex: 1;
+  min-width: 0;
+}
+
+.label {
+  font-size: 0.875rem;
+  color: var(--primary-color);
+  margin-bottom: 0.25rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: var(--input-background);
+  color: #ffffff;
+  border: 1px solid var(--primary-color);
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+}
+
+.input:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(219, 62, 14, 0.897);
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.button {
+  padding: 0.75rem 1.5rem;
+  background-color: rgba(0, 255, 0, 0.2);
+  color: var(--primary-color);
+  font-weight: 600;
+  border: 2px solid var(--primary-color);
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.button:hover {
+  background-color: rgba(0, 255, 0, 0.4);
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
+}
+
+.buttonRunning {
+  background-color: rgba(0, 255, 0, 0.8);
+  border-color: #00ff00;
+  color: #000000;
+}
+
+.buttonStopped {
+  background-color: rgba(255, 0, 0, 0.8);
+  border-color: #ff0000;
+  color: #ffffff;
+}
+
+.buttonUpdated {
+  background-color: rgba(0, 128, 255, 0.8);
+  border-color: #0080ff;
+  color: #ffffff;
+}
+
+.loadingButton {
+  position: relative;
+  overflow: hidden;
+}
+
+.loadingButton::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.dots::after {
+  content: '.';
+  animation: ellipsis 1.5s infinite;
+}
+
+@media (max-width: 1200px) {
+  .inputRow {
+    flex-wrap: wrap;
+  }
+  
+  .inputGroup {
+    flex-basis: calc(50% - 0.5rem);
+  }
+  
+  .buttonGroup {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .button {
+    flex-basis: calc(33.33% - 0.67rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .inputGroup {
+    flex-basis: 100%;
+  }
+  
+  .button {
+    flex-basis: 100%;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+}

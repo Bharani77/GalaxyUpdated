@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+:root {
+  --primary-color: #00ff00;
+  --secondary-color: #0066cc;
+  --background-color: #000000;
+  --form-background: rgba(0, 20, 40, 0.8);
+  --input-background: rgba(0, 40, 80, 0.6);
+}
+
+body {
+  font-family: 'Orbitron', sans-serif;
+  background-color: var(--background-color);
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
